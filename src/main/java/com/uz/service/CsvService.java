@@ -32,67 +32,63 @@ public class CsvService {
     public List<CsvEntity> makeDb(MultipartFile file){
 
         List<CsvEntity> entityList = new LinkedList<>();
-
-        String csf = "C:\\Users\\Аслом\\Desktop\\csv\\test.csv";
         try {
             String line = "";
             String splitBy = ",";
+            String zero = ".";
             InputStreamReader red = new InputStreamReader(file.getInputStream());
             BufferedReader reader = new BufferedReader(red);
             while ((line = reader.readLine()) != null){
                 CsvEntity entity = new CsvEntity();
                 String[] csv = line.split(splitBy);
-                entity.setId(csv[0]);
-                entity.setName(csv[1]);
-                SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy'T'HH:mm:ssX");
-                Date date = df.parse(csv[2]);
-                entity.setDoc_date(date);
-                System.out.println("id: "+ csv[0] + " name: "+ csv[1] + " date: " + csv[2]);
-                entityList.add(entity);
-                csvRepository.save(entity);
+                String[] id = getColumn(csv[0]);
+                if (id.length > 0){
+                    for (int i = 0; i < id.length; i++) {
+                        CsvEntity multIdentity = new CsvEntity();
+                        multIdentity.setId(id[i]);
+                        multIdentity.setName(csv[1]);
+                        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy'T'HH:mm:ssX");
+                        Date date = df.parse(csv[2]);
+                        multIdentity.setDoc_date(date);
+                        entityList.add(multIdentity);
+                        csvRepository.save(multIdentity);
+                    }
+                }else {
+                    entity.setId(csv[0]);
+                    System.out.println("id: " + csv[0] + " name: " + csv[1] + " date: " + csv[2]);
+                    entity.setName(csv[1]);
+                    SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy'T'HH:mm:ssX");
+                    Date date = df.parse(csv[2]);
+                    entity.setDoc_date(date);
+                    entityList.add(entity);
+                    csvRepository.save(entity);
+                }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return entityList;
+    }
 
-//
-//        CsvEntity csvEntity = null;
-//
-//        try {
-//            InputStreamReader inputStreamReader = new InputStreamReader(file.getInputStream());
-//            CSVParser csvParser = CSVFormat.EXCEL.withAllowMissingColumnNames().parse(inputStreamReader);
-//
-//
-//            for (CSVRecord record : csvParser){
-//                csvEntity = new CsvEntity();
-//                if (record.getRecordNumber() == 1){
-//                    csvEntity.setId(record.get(0));
-//                }else if (record.getRecordNumber() == 2){
-//                    csvEntity.setName(record.get((int) record.getRecordNumber()-1));
-//                }else if (record.getRecordNumber() == 3){
-//                    SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy'T'HH:mm:ssX");
-//                    Date date = df.parse(record.get((int) record.getRecordNumber()-1));
-//                    csvEntity.setDoc_date(date);
-//                }
-//                csvRepository.save(csvEntity);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return csvEntity;
-
+    private String[] getColumn(String strings){
+        String zero = ",";
+        String column = strings.replace(".", ",");
+        String[] id = column.split(zero);
+        return id;
     }
 
 
     public List<CsvEntity> getForm() {
         return csvRepository.findAll();
     }
+
+    public List<CsvEntity> orderById() {
+        return csvRepository.findByOrderById();
+    }
+
 
     public void delete() {
         csvRepository.deleteAll();

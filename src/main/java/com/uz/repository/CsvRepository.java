@@ -4,6 +4,17 @@ import com.uz.entity.CsvEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CsvRepository extends JpaRepository<CsvEntity, Integer> {
+
+    List<CsvEntity> findByOrderById();
+
+//    List<CsvEntity> findByOrOrderByName();
+//
+//    List<CsvEntity> findByOrOrderByDoc_date();
+
+
+
 }

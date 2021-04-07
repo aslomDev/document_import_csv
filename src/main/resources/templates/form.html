@@ -61,13 +61,16 @@
                 </button>
                 <button type="submit" class="btn btn-warning" data-dismiss="modal">Удалить все</button>
             </form>
+            <form th:action="@{/}" id="get" method="get">
+                <input type="text" hidden="hidden" id="sort" name="sort" value="id"/>
+                <button type="submit" class="btn btn-warning">Сортировка по ид</button>
+            </form>
 
 <!--            <a href="/delete" type="button"  class="btn btn-warnig">Удалить все</a>-->
 
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
-                    <!--                    <th>Id</th>-->
                     <th>ид</th>
                     <th>имя</th>
                     <th>дата документа</th>

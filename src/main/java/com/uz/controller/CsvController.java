@@ -2,6 +2,7 @@ package com.uz.controller;
 
 
 import com.uz.service.CsvService;
+import com.uz.service.Sorted;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,22 @@ public class CsvController {
 
     @Autowired private CsvService csvService;
 
-    @GetMapping
-    public String csvPage(Model model){
+//    @GetMapping
+//    public String csvPage(Model model){
+//
+//            model.addAttribute("form", csvService.getForm());
+//
+//        return "form";
+//    }
 
-        model.addAttribute("form", csvService.getForm());
+    @GetMapping("/")
+    public String csvPage(@ModelAttribute Sorted sort, Model model){
+
+        if (sort.getSort() != null && sort.getSort().equals("id")){
+            model.addAttribute("form", csvService.orderById());
+        }else {
+            model.addAttribute("form", csvService.getForm());
+        }
 
         return "form";
     }
