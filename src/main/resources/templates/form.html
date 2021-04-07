@@ -54,9 +54,15 @@
         <div class="col-md-12">
             <h4>Документы</h4>
 <!--            <a href="/add" class="btn btn-info">Создать</a>-->
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
-                Создать
-            </button>
+
+            <form th:action="@{/delete}" id="delete" method="post">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
+                    Создать
+                </button>
+                <button type="submit" class="btn btn-warning" data-dismiss="modal">Удалить все</button>
+            </form>
+
+<!--            <a href="/delete" type="button"  class="btn btn-warnig">Удалить все</a>-->
 
             <table class="table table-bordered table-striped table-hover">
                 <thead>

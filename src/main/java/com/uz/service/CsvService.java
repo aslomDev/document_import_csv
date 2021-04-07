@@ -93,4 +93,8 @@ public class CsvService {
     public List<CsvEntity> getForm() {
         return csvRepository.findAll();
     }
+
+    public void delete() {
+        csvRepository.deleteAll();
+    }
 }

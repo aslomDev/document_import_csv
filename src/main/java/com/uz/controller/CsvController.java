@@ -33,6 +33,15 @@ public class CsvController {
 //        return "form";
     }
 
+    @PostMapping(value = "/delete")
+    public String csvPagePost(Model model){
+        csvService.delete();
+        model.addAttribute("form");
+
+        return "redirect:/";
+//        return "form";
+    }
+
 
 
 }
