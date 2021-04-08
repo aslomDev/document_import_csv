@@ -19,7 +19,7 @@ public class CsvService {
 
 
 
-    public Set<CsvEntity> makeDb(MultipartFile file){
+    public List<CsvEntity> makeDb(MultipartFile file){
 
         List<CsvEntity> entityList = new LinkedList<>();
         Set<CsvEntity> entitySet = new HashSet<>();
@@ -69,8 +69,11 @@ public class CsvService {
             });
         }
 
-        csvRepository.saveAll(entitySet);
-        return entitySet;
+        entitySet.stream()
+                .sorted((is1, is2) -> is1.getId().compareTo(is2.getId())).forEach(item -> csvRepository.save(item));
+
+
+        return getForm();
     }
 
 

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -24,7 +23,7 @@ public class CsvController {
         if (sort.getSort() != null && sort.getSort().equals("id")){
             model.addAttribute("form", csvService.orderById());
         }else {
-            model.addAttribute("form", csvService.orderById());
+            model.addAttribute("form", csvService.getForm());
         }
 
         return "form";
