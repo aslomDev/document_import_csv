@@ -54,13 +54,11 @@ public class CsvService {
                 String[] parentId = parent(child);
                 if (parentId.length >= childId.length){
                     int count = 1;
-                    int sizeArray = 1;
                     for (int j = 0; j < childId.length; j++) {
                         if (parentId[j].equals(childId[j])){
-                            if (childId.length == count && sizeArray == childId.length){
+                            if (childId.length == count){
                                 entitySet.add(item);
                             }
-                            sizeArray++;
                             count++;
                         }else {
                             ///  если таковой имеется отдельний записывается
