@@ -54,11 +54,13 @@ public class CsvService {
                 String[] parentId = parent(child);
                 if (parentId.length >= childId.length){
                     int count = 1;
+                    int sizeArray = 1;
                     for (int j = 0; j < childId.length; j++) {
                         if (parentId[j].equals(childId[j])){
-                            if (childId.length == count){
+                            if (childId.length == count && sizeArray == childId.length){
                                 entitySet.add(item);
                             }
+                            sizeArray++;
                             count++;
                         }else {
                             ///  если таковой имеется отдельний записывается
@@ -69,9 +71,13 @@ public class CsvService {
             });
         }
 
+        entitySet.addAll(setE);
+
         entitySet.stream()
                 .sorted((is1, is2) -> is1.getId().compareTo(is2.getId())).forEach(item -> csvRepository.save(item));
 
+        setE.stream()
+                .sorted((is1, is2) -> is1.getId().compareTo(is2.getId())).forEach(System.out::println);
 
         return getForm();
     }
