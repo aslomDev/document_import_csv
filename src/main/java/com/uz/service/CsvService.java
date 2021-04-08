@@ -69,7 +69,6 @@ public class CsvService {
             });
         }
 
-        entitySet.addAll(setE);
         csvRepository.saveAll(entitySet);
         return entitySet;
     }
@@ -88,7 +87,7 @@ public class CsvService {
     }
 
     public List<CsvEntity> orderById() {
-        return csvRepository.findByOrderByIdDesc();
+        return csvRepository.findByOrderById();
     }
 
 

@@ -24,7 +24,7 @@ public class CsvController {
         if (sort.getSort() != null && sort.getSort().equals("id")){
             model.addAttribute("form", csvService.orderById());
         }else {
-            model.addAttribute("form", csvService.getForm());
+            model.addAttribute("form", csvService.orderById());
         }
 
         return "form";
