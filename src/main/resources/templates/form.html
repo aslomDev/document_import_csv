@@ -21,12 +21,6 @@
     </div>
 </nav>
 
-<!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">-->
-<!--    Launch demo modal-->
-<!--</button>-->
-
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -53,8 +47,6 @@
     <div class="row">
         <div class="col-md-12">
             <h4>Документы</h4>
-<!--            <a href="/add" class="btn btn-info">Создать</a>-->
-
             <form th:action="@{/delete}" id="delete" method="post">
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal">
                     Создать
@@ -65,9 +57,6 @@
                 <input type="text" hidden="hidden" id="sort" name="sort" value="id"/>
                 <button type="submit" class="btn btn-warning">Сортировка по ид</button>
             </form>
-
-<!--            <a href="/delete" type="button"  class="btn btn-warnig">Удалить все</a>-->
-
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
@@ -88,22 +77,6 @@
     </div>
 </div>
 
-<!--<form>-->
-<!--    <div class="form-group">-->
-<!--        <label for="exampleInputEmail1">Email address</label>-->
-<!--        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">-->
-<!--        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="exampleInputPassword1">Password</label>-->
-<!--        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
-<!--    </div>-->
-<!--    <div class="form-group form-check">-->
-<!--        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
-<!--        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--</form>-->
 <script>
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')

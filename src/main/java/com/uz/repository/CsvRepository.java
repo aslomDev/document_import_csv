@@ -9,11 +9,8 @@ import java.util.List;
 @Repository
 public interface CsvRepository extends JpaRepository<CsvEntity, Integer> {
 
-    List<CsvEntity> findByOrderById();
+    List<CsvEntity> findByOrderByIdDesc();
 
-//    List<CsvEntity> findByOrOrderByName();
-//
-//    List<CsvEntity> findByOrOrderByDoc_date();
 
 
 

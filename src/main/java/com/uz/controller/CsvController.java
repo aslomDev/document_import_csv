@@ -18,14 +18,6 @@ public class CsvController {
 
     @Autowired private CsvService csvService;
 
-//    @GetMapping
-//    public String csvPage(Model model){
-//
-//            model.addAttribute("form", csvService.getForm());
-//
-//        return "form";
-//    }
-
     @GetMapping("/")
     public String csvPage(@ModelAttribute Sorted sort, Model model){
 
@@ -43,7 +35,6 @@ public class CsvController {
         modelMap.addAttribute("form", csvService.makeDb(file));
 
         return "redirect:/";
-//        return "form";
     }
 
     @PostMapping(value = "/delete")
@@ -52,7 +43,6 @@ public class CsvController {
         model.addAttribute("form");
 
         return "redirect:/";
-//        return "form";
     }
 
 
